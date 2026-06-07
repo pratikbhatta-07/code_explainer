@@ -1,0 +1,76 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2868
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red25\green162\blue221;\red184\green111\blue179;\red174\green177\blue177;
+\red67\green193\blue160;\red201\green149\blue255;\red191\green200\blue208;\red203\green203\blue202;\red252\green99\blue94;
+\red251\green147\blue67;\red152\green206\blue255;\red204\green172\blue104;\red167\green197\blue151;\red0\green0\blue0;
+\red255\green255\blue255;\red173\green177\blue177;\red0\green0\blue0;\red174\green177\blue177;\red0\green0\blue0;
+\red174\green177\blue177;\red173\green176\blue178;}
+{\*\expandedcolortbl;;\cssrgb\c5821\c69898\c89230;\cssrgb\c77558\c52845\c75316;\cssrgb\c73671\c74852\c74877;
+\cssrgb\c30674\c79032\c69025;\cssrgb\c83228\c66813\c100000;\cssrgb\c79260\c82417\c85159;\cssrgb\c83502\c83501\c83084;\cssrgb\c100000\c48064\c44034;
+\cssrgb\c99511\c64397\c32917;\cssrgb\c65473\c84801\c100000;\cssrgb\c84073\c72587\c48244;\cssrgb\c71087\c80874\c65568;\cssrgb\c0\c1\c1;
+\cssrgb\c100000\c100000\c100000;\cssrgb\c73503\c74682\c74891;\cssrgb\c0\c1\c1;\cssrgb\c73588\c74767\c74884;\cssrgb\c0\c1\c1;
+\cssrgb\c73588\c74767\c74884;\cssrgb\c73333\c74510\c74902;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww29200\viewh17740\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs32 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec3 from\cf2 \strokec4  \cf2 \strokec5 src\cf2 \strokec4 .\cf2 \strokec5 services\cf2 \strokec4 .\cf2 \strokec5 groq_services\cf2 \strokec4  \cf2 \strokec3 import\cf2 \strokec4  \cf2 \strokec6 get_groq_client\cf2 \strokec4 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \strokec7 client\cf2 \strokec4  \cf2 \strokec8 =\cf2 \strokec4  \cf2 \strokec6 get_groq_client\cf2 \strokec4 ()\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \strokec9 def\cf2 \strokec4  \cf2 \strokec6 explain_code\cf2 \strokec4 (\cf2 \strokec10 java_code\cf2 \strokec4  : \cf2 \strokec5 str\cf2 \strokec4 ) -> \cf2 \strokec5 str\cf2 \strokec4  :\
+    \cf2 \strokec7 response\cf2 \strokec4  \cf2 \strokec8 =\cf2 \strokec4  \cf2 \strokec7 client\cf2 \strokec4 .\cf2 \strokec7 chat\cf2 \strokec4 .\cf2 \strokec7 completions\cf2 \strokec4 .\cf2 \strokec6 create\cf2 \strokec4 (\
+        \cf2 \strokec10 model\cf2 \strokec4  \cf2 \strokec8 =\cf2 \strokec4  \cf2 \strokec11 "llama3-8b-8192\'94,\cf2 \strokec4 \
+        \cf2 \strokec10 messages\cf2 \strokec4  \cf2 \strokec8 =\cf2 \strokec4  [\
+            \{\
+                \cf2 \strokec11 "role"\cf2 \strokec4  : \cf2 \strokec11 "system"\cf2 \strokec4 ,\
+                \cf2 \strokec11 "content"\cf2 \strokec4  : (\
+                    \cf2 \strokec11 "You are an expert Java developer and patient teacher. "\cf2 \strokec4 \
+                    \cf2 \strokec11 "When given Java code, explain EACH LINE in simple terms "\cf2 \strokec4 \
+                    \cf2 \strokec11 "that a CS student would understand. "\cf2 \strokec4 \
+                    \cf2 \strokec11 "Format: show the code line, then explain it in one sentence. "\cf2 \strokec4 \
+                    \cf2 \strokec11 "Highlight any design patterns, potential bugs, or best practices."\cf2 \strokec4 \
+                )\
+            \},\
+            \{\
+                \cf2 \strokec11 "role"\cf2 \strokec4  : \cf2 \strokec11 "user"\cf2 \strokec4 ,\
+                \cf2 \strokec11 "content"\cf2 \strokec4  : \cf2 \strokec9 f\cf2 \strokec11 "Please explain this java code : \cf2 \strokec12 \\n\\n\cf2 \strokec11 ```java\cf2 \strokec12 \\n\cf2 \strokec9 \{\cf2 \strokec4 java_code\cf2 \strokec9 \}\cf2 \strokec12 \\n\cf2 \strokec11 ```"\cf2 \strokec4 \
+            \}\
+        ],\
+        \cf2 \strokec10 temperature\cf2 \strokec4  \cf2 \strokec8 =\cf2 \strokec4  \cf2 \strokec13 0.3\cf2 \strokec4 ,\
+        \cf2 \strokec10 max_tokens\cf2 \strokec4  \cf2 \strokec8 =\cf2 \strokec4  \cf2 \strokec13 1024\cf2 \strokec4 \
+    )\
+    \cf2 \strokec3 return\cf2 \strokec4  \cf2 \strokec7 response\cf2 \strokec4 .choices[\cf2 \strokec13 0\cf2 \strokec4 ].message.content\cf14 \cb15 \strokec16 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf17 \cb1 \strokec18 1. response = client.chat.completions.create() ->\
+	this method is a part of LLM API used to send prompt to the model and receive generated response\
+	it has 4 parameters like : model, message, temperature, max_token\
+\
+2. model = \'93llama3-8b-8192\'94 \
+	tells api which llm model to use for the generating answer\
+\
+3. message \
+	message = prompt engineering layer where we are giving instruction to llm model how to behave based on the context.\
+	\cf19 \outl0\strokewidth0 it is list of dictionaries that\cf17 \outl0\strokewidth0 \strokec18  has 2 parameters : role and content\
+	role = system for system prompts and role = user for user prompt\
+	content is decided based on \'93role\'93 and based on context of the project\
+\
+4. temperature = 0.3\
+	controls how random or predictable AI\'92s output is\
+\
+5. max_token = 1024\
+	length of the answer generated. 1024 tokens means approximately 700-800 words\
+\
+6. return response.choices[0].message.content \
+	extracts and return the actual generated answer by llm model.\
+	\
+response\
+ \uc0\u9492 \u9472 \u9472  choices (list)\
+      \uc0\u9492 \u9472 \u9472  [0]\
+           \uc0\u9492 \u9472 \u9472  message\
+                \uc0\u9492 \u9472 \u9472  content  \u8592  FINAL ANSWER\cf21 \strokec21 \
+}
