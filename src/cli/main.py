@@ -17,7 +17,7 @@ def main() :
         
         mode = input("Enter mode\n 1. Beginner friendly\n 2. Interview style\n Choose mode : ").strip().lower()
         
-        choice = input("Enter input style\n 1. Paste code\n2. File Input\nChoose : ")
+        choice = input("Enter input style\n 1. Paste code\n 2. File Input\n Choose : ")
 
         if choice == "2" :
             path = input("Enter input file path : ")

@@ -1,11 +1,24 @@
 from src.services.groq_services import get_groq_client
+from src.services.cache_services import(load_cache, save_cache)
+import hashlib
 
 client = get_groq_client()
 
+def generate_key(code : str, language : str, mode : str) :
+    text = f"{language}:{mode}:{code}"
+    return hashlib.md5(text.encode()).hexdigest()
+
 def explain_code(code : str, language : str, mode : str ) -> str :
 
+    cache = load_cache()
+    cache_key = generate_key(code, language, mode)
+
+    if cache_key in cache :
+        print("Using cached response")
+        return cache[cache_key]
+
     prompts = {
-        "beginner" : ("""You are an expert software engineer and a patient coding tutor.
+        "1" : ("""You are an expert software engineer and a patient coding tutor.
 
                                 Your goal is to help beginners understand code clearly and confidently.
 
@@ -33,7 +46,7 @@ def explain_code(code : str, language : str, mode : str ) -> str :
                                 Assume the reader is a CS student who is still learning programming."""
                                 ),
 
-        "interview" : ("""You are a senior software engineer conducting a technical interview.
+        "2" : ("""You are a senior software engineer conducting a technical interview.
 
                                 Your task is to analyze the code as an interviewer would.
 
@@ -77,7 +90,7 @@ def explain_code(code : str, language : str, mode : str ) -> str :
       Analyse the following code : 
       ```{language} {code}"""
 
-
+    print("Calling GROQ api")
     try :
         response = client.chat.completions.create(
             model = "llama-3.1-8b-instant",
@@ -94,7 +107,11 @@ def explain_code(code : str, language : str, mode : str ) -> str :
             temperature = 0.3,
             max_tokens = 1500
             )
-        return response.choices[0].message.content
+        result = response.choices[0].message.content
+        cache[cache_key] = result
+        save_cache(cache)
+
+        return result
 
     except Exception as e :
         return f"Error while generating explanation: {str(e)}"
