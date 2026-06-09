@@ -1,5 +1,5 @@
-from src.services.groq_services import get_groq_client
 from src.services.cache_services import(load_cache, save_cache)
+from src.services.groq_services import get_groq_client
 import hashlib
 
 client = get_groq_client()
@@ -33,12 +33,17 @@ def explain_code(code : str, language : str, mode : str ) -> str :
                                 8. Highlight important programming concepts such as loops, functions, recursion,classes, arrays, hash maps, etc.
                                 9. Mention common beginner mistakes related to the code if relevant.
                                 10. If the code contains bugs, explain them gently and suggest fixes.
+                                11. Calculate and explain : 
+                                * Time Complexity
+                                * Space Complexity
 
                                 Output Format:
                                 Programming Language:
                                 Program Overview:
                                 Code Explanation:
                                 Key Concepts Learned:
+                                Time Complexity:
+                                Space Complexity:
                                 Potential Issues:
                                 Summary:
 
@@ -81,6 +86,34 @@ def explain_code(code : str, language : str, mode : str ) -> str :
                                 Be concise, analytical, and technically rigorous.
                                 Focus on interview preparation rather than teaching beginners."""
                             ),
+        "3" : (
+           """
+            You are an expert software engineer and testing specialist.
+            Analyze the given code and generate meaningful unit tests.
+
+            Instructions:
+            1. Identify the programming language.
+            2. Understand the function or method behavior.
+            3. Generate comprehensive unit tests.
+            4. Cover :
+                - Normal cases
+                - Edge cases
+                - Boundary cases
+                - Invalid inputs (if applicable)
+            5. Use the standard testing framework for the language:
+                - Java → JUnit
+                - Python → unittest or pytest
+                - JavaScript → Jest
+                - C++ → Google Test
+            6. Output only the test code with brief explanations.
+
+            Output Format :
+            Language:
+            Testing Framework:
+            Generated Tests:
+            Test Coverage Summary:
+            """
+        )
  
     }
 
