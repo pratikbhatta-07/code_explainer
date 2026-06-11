@@ -1,14 +1,24 @@
-import json
-import os
+from src.db.db import get_connection
 
-CACHE_FILE = "cache/cache.json"
+def get_cached_response(code_hash) :
+    conn = get_connection()
+    cursor = conn.cursor()
 
-def load_cache() :
-    if not os.path.exists(CACHE_FILE) :
-        return {}
-    with open(CACHE_FILE, "r") as f :
-        return json.load(f)
-    
-def save_cache(cache) :
-    with open(CACHE_FILE, "w") as f :
-        json.dump(cache, f, indent = 4)
+    cursor.execute(
+        "SELECT response FROM cache WHERE code_hash = ? ", (code_hash,)
+    )
+    row = cursor.fetchone()
+    conn.close()
+
+    return row[0] if row else None
+
+def save_response(code_hash, response) :
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "INSERT OR REPLACE INTO cache (code_hash, response) VALUES (?, ?)", (code_hash, response)
+    )
+
+    conn.commit()
+    conn.close()

@@ -1,5 +1,6 @@
 from src.core.orchestrator import full_review
 from src.tools.explanation_tool import explain_code
+from src.db.init_db import init_db
 
 from rich.console import Console # main output manager, supports colors, borders etc
 from rich.panel import Panel # boxes around text
@@ -90,4 +91,5 @@ def main() :
 )
 
 if __name__ == "__main__":
+    init_db()
     main()

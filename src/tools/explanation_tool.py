@@ -1,21 +1,26 @@
-from src.services.cache_services import(load_cache, save_cache)
+from src.services.cache_services import get_cached_response, save_response
 from src.services.groq_services import get_groq_client
 import hashlib
 
 client = get_groq_client()
 
-def generate_key(code : str, language : str, mode : str) :
-    text = f"{language}:{mode}:{code}"
+def generate_key(code: str, language: str, mode: str):
+    normalized_code = code.strip()            # remove extra spaces
+    normalized_code = "\n".join(line.strip() for line in normalized_code.splitlines())  # normalize lines
+    
+    text = f"{language.strip()}:{mode.strip()}:{normalized_code}"
+    
     return hashlib.md5(text.encode()).hexdigest()
 
 def explain_code(code : str, language : str, mode : str ) -> str :
 
-    cache = load_cache()
     cache_key = generate_key(code, language, mode)
 
-    if cache_key in cache :
-        print("Using cached response")
-        return cache[cache_key]
+    cached = get_cached_response(cache_key)
+
+    if cached:
+        print("⚡ Cache hit")
+        return cached
 
     prompts = {
         "1" : ("""You are an expert software engineer and a patient coding tutor.
@@ -141,8 +146,7 @@ def explain_code(code : str, language : str, mode : str ) -> str :
             max_tokens = 1500
             )
         result = response.choices[0].message.content
-        cache[cache_key] = result
-        save_cache(cache)
+        save_response(cache_key, result)
 
         return result
 
