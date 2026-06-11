@@ -4,7 +4,6 @@ Code Explainer is a **command-line AI-powered developer tool** that analyzes sou
 
 It combines **LLM intelligence + modular architecture + SQLite caching** to simulate a real-world AI engineering system.
 
----
 
 ## 📌 Table of Contents
 
@@ -21,6 +20,8 @@ It combines **LLM intelligence + modular architecture + SQLite caching** to simu
     - [🧪 Automated Unit Test Generation](#-automated-unit-test-generation)
     - [💻 Rich CLI Interface](#-rich-cli-interface)
   - [🏗️ Architecture](#️-architecture)
+  - [📁 Project Structure](#-project-structure)
+  - [⚙️ Installation](#️-installation)
 
 ---
 
@@ -132,3 +133,47 @@ SQLite Database
     │
     ▼
 Formatted Output (CLI)
+
+
+---
+
+## 📁 Project Structure
+
+src/
+│
+├── cli/
+│   └── main.py
+│
+├── core/
+│   └── orchestrator.py
+│
+├── tools/
+│   ├── explanation_tool.py
+│   ├── complexity_tool.py
+│   └── test_tool.py
+│
+├── services/
+│   ├── groq_services.py
+│   └── cache_services.py
+│
+├── db/
+│   ├── db.py
+│   └── init_db.py
+│
+├── utils/
+│   └── config.py
+│
+data/
+│   └── cache.db
+│
+requirements.txt
+README.md
+
+---
+
+## ⚙️ Installation
+
+```bash
+git clone https://github.com/pratikbhatta-07/code_explainer.git
+cd code_explainer
+pip install -r requirements.txt
