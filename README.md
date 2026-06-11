@@ -136,7 +136,7 @@ Formatted Output (CLI)
 ```
 
 ## 📁 Project Structure
-
+```text
 src/
 │
 ├── cli/
