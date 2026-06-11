@@ -1,50 +1,102 @@
-# Code Explainer
+# 🚀 Code Explainer
 
-Code Explainer is a command-line application that uses Large Language Models (LLMs) to analyze source code and provide developer-focused insights. The tool supports multiple programming languages and can explain code, generate unit tests, estimate complexity, and provide interview-oriented analysis.
+Code Explainer is a **command-line AI-powered developer tool** that analyzes source code and provides structured insights using Large Language Models (LLMs).
 
-The project was built to explore practical applications of Generative AI in software engineering workflows and to demonstrate prompt engineering, tool orchestration, caching, and modular system design.
+It goes beyond simple explanations by combining **tool orchestration, caching, and modular system design** to simulate a real-world AI engineering pipeline.
 
-## Features
+---
 
-* Multi-language code analysis
+## 🔥 Key Features
 
-  * Java
-  * Python
-  * C++
-  * JavaScript
-  * Other supported languages
+### 🧠 Multi-Language Code Analysis
+Supports multiple languages:
+- Python
+- Java
+- C++
+- JavaScript
+- Extensible to others
 
-* Multiple analysis modes
+---
 
-  * Beginner Friendly Explanation
-  * Interview Style Analysis
-  * Unit Test Generation
-  * Full Review Pipeline
+### ⚙️ Multiple Analysis Modes
 
-* File Input Support
+- **Beginner Friendly Explanation**  
+  → Step-by-step explanation with analogies  
 
-  * Analyze code directly from source files
+- **Interview Style Analysis**  
+  → Optimized for DSA + interview prep  
 
-* Complexity Analysis
+- **Unit Test Generation**  
+  → Generates framework-specific test cases  
 
-  * Estimates time and space complexity using lightweight static analysis
+- **Full Review Pipeline**  
+  → Combines explanation + complexity + testing  
 
-* Automated Unit Test Generation
+---
 
-  * Generates framework-specific test cases based on the provided code
+### ⚡ SQLite-Based Smart Caching (NEW)
 
-* Response Caching
+- Persistent caching using **SQLite (instead of JSON)**
+- Avoids redundant LLM API calls
+- Hash-based cache keys for fast lookup
+- Improves performance and reduces API usage
 
-  * Avoids repeated API calls for previously analyzed code
-  * Improves performance and reduces API usage
+---
 
-* Rich CLI Interface
+### 🧩 Modular Tool Architecture
 
-  * Syntax highlighting
-  * Structured output panels
-  * Progress indicators
+- Explanation Tool
+- Complexity Tool
+- Test Generation Tool
 
-## Architecture
+Each tool is independent and reusable.
+
+---
+
+### 🧠 Intelligent Orchestration
+
+- Central orchestrator manages:
+  - Tool execution
+  - Response aggregation
+  - Pipeline flow
+
+---
+
+### 📂 Flexible Input System
+
+- Paste code directly
+- Provide file input
+
+---
+
+### 📊 Complexity Analysis
+
+- Estimates:
+  - Time Complexity
+  - Space Complexity
+- Uses lightweight static analysis
+
+---
+
+### 🧪 Automated Unit Test Generation
+
+- Python → pytest/unittest  
+- Java → JUnit  
+- JavaScript → Jest  
+- C++ → Google Test  
+
+---
+
+### 💻 Rich CLI Experience
+
+- Syntax highlighting  
+- Structured panels  
+- Clean output  
+- Interactive prompts  
+
+---
+
+## 🏗️ Architecture
 
 ```text
 User Input
@@ -55,20 +107,24 @@ CLI Layer
     ▼
 Orchestrator
     │
-    ├── Explanation Tool
-    ├── Complexity Tool
-    ├── Test Generation Tool
+    ├── Explanation Tool  (LLM + Cache)
+    ├── Complexity Tool   (Static Analysis)
+    ├── Test Tool         (LLM + Cache)
     │
     ▼
-LLM Service
+Service Layer
+    │
+    ├── Groq API Service
+    └── Cache Service (SQLite)
     │
     ▼
-Formatted Output
-```
+SQLite Database
+    │
+    ▼
+Formatted Output (CLI)
 
-## Project Structure
+## 📁 Project Structure
 
-```text
 src/
 │
 ├── cli/
@@ -84,79 +140,32 @@ src/
 │
 ├── services/
 │   ├── groq_services.py
-│   └── cache_service.py
+│   └── cache_services.py
 │
-cache/
-│   └── cache.json
+├── db/
+│   ├── db.py
+│   └── init_db.py
+│
+├── utils/
+│   └── config.py
+│
+data/
+│   └── cache.db
 │
 requirements.txt
 README.md
-```
 
-## Installation
 
-Clone the repository:
+## ⚙️ Installation
 
-```bash
 git clone https://github.com/pratikbhatta-07/code_explainer.git
 cd code_explainer
-```
-
-Install dependencies:
-
-```bash
 pip install -r requirements.txt
-```
 
-Create a `.env` file:
 
-```env
-GROQ_API_KEY=your_api_key_here
-```
+## ▶️ Running the Application
 
-## Running the Application
-
-```bash
 python3 -m src.cli.main
-```
 
-## Example Workflow
-
-1. Select a programming language
-2. Choose an analysis mode
-3. Paste code or provide a file path
-4. Receive a detailed analysis report
-
-## Technologies Used
-
-* Python
-* Groq API
-* Llama 3.1
-* Rich
-* dotenv
-
-## Future Improvements
-
-* Bug Detection Tool
-* Retrieval-Augmented Generation (RAG)
-* Web Interface
-* AST-Based Complexity Analysis
-* Agentic Tool Selection
-* Documentation Generation
-* Multi-Agent Review Pipeline
-
-## Learning Outcomes
-
-This project helped explore:
-
-* Prompt Engineering
-* LLM Integration
-* Tool-Oriented Architecture
-* Caching Strategies
-* CLI Application Development
-* AI-Assisted Software Engineering
-* Modular Python Design
-
-## Author
-
-Pratik Bhatta
+## Author -
+PRATIK BHATTA
