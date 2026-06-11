@@ -133,9 +133,7 @@ SQLite Database
     │
     ▼
 Formatted Output (CLI)
-
-
----
+```
 
 ## 📁 Project Structure
 
@@ -168,8 +166,7 @@ data/
 │
 requirements.txt
 README.md
-
----
+```
 
 ## ⚙️ Installation
 
