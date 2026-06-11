@@ -2,52 +2,63 @@
 
 Code Explainer is a **command-line AI-powered developer tool** that analyzes source code and provides structured insights using Large Language Models (LLMs).
 
-It goes beyond simple explanations by combining **tool orchestration, caching, and modular system design** to simulate a real-world AI engineering pipeline.
+It combines **LLM intelligence + modular architecture + SQLite caching** to simulate a real-world AI engineering system.
+
+---
+
+## 📌 Table of Contents
+
+- [🚀 Code Explainer](#-code-explainer)
+  - [📌 Table of Contents](#-table-of-contents)
+  - [🔥 Key Features](#-key-features)
+    - [🧠 Multi-Language Code Analysis](#-multi-language-code-analysis)
+    - [⚙️ Multiple Analysis Modes](#️-multiple-analysis-modes)
+    - [⚡ SQLite-Based Smart Caching](#-sqlite-based-smart-caching)
+    - [🧩 Modular Tool Architecture](#-modular-tool-architecture)
+    - [🧠 Intelligent Orchestration](#-intelligent-orchestration)
+    - [📂 Flexible Input System](#-flexible-input-system)
+    - [📊 Complexity Analysis](#-complexity-analysis)
+    - [🧪 Automated Unit Test Generation](#-automated-unit-test-generation)
+    - [💻 Rich CLI Interface](#-rich-cli-interface)
+  - [🏗️ Architecture](#️-architecture)
 
 ---
 
 ## 🔥 Key Features
 
 ### 🧠 Multi-Language Code Analysis
-Supports multiple languages:
-- Python
-- Java
-- C++
-- JavaScript
-- Extensible to others
+Supports:
+- Python  
+- Java  
+- C++  
+- JavaScript  
+- Easily extensible  
 
 ---
 
 ### ⚙️ Multiple Analysis Modes
 
-- **Beginner Friendly Explanation**  
-  → Step-by-step explanation with analogies  
-
-- **Interview Style Analysis**  
-  → Optimized for DSA + interview prep  
-
-- **Unit Test Generation**  
-  → Generates framework-specific test cases  
-
-- **Full Review Pipeline**  
-  → Combines explanation + complexity + testing  
+- **Beginner Friendly Explanation** → Step-by-step teaching  
+- **Interview Style Analysis** → DSA-focused insights  
+- **Unit Test Generation** → Framework-specific tests  
+- **Full Review Pipeline** → Explanation + Complexity + Tests  
 
 ---
 
-### ⚡ SQLite-Based Smart Caching (NEW)
+### ⚡ SQLite-Based Smart Caching
 
-- Persistent caching using **SQLite (instead of JSON)**
-- Avoids redundant LLM API calls
-- Hash-based cache keys for fast lookup
-- Improves performance and reduces API usage
+- Persistent caching using SQLite (replacing JSON)
+- Hash-based key generation
+- Avoids redundant API calls
+- Improves performance & reduces cost
 
 ---
 
 ### 🧩 Modular Tool Architecture
 
-- Explanation Tool
-- Complexity Tool
-- Test Generation Tool
+- Explanation Tool  
+- Complexity Tool  
+- Test Generation Tool  
 
 Each tool is independent and reusable.
 
@@ -56,42 +67,41 @@ Each tool is independent and reusable.
 ### 🧠 Intelligent Orchestration
 
 - Central orchestrator manages:
-  - Tool execution
-  - Response aggregation
-  - Pipeline flow
+  - Tool execution  
+  - Response aggregation  
+  - Pipeline flow  
 
 ---
 
 ### 📂 Flexible Input System
 
-- Paste code directly
-- Provide file input
+- Paste code  
+- File input  
 
 ---
 
 ### 📊 Complexity Analysis
 
-- Estimates:
-  - Time Complexity
-  - Space Complexity
-- Uses lightweight static analysis
+- Time Complexity  
+- Space Complexity  
+- Lightweight static analysis  
 
 ---
 
 ### 🧪 Automated Unit Test Generation
 
-- Python → pytest/unittest  
+- Python → pytest / unittest  
 - Java → JUnit  
 - JavaScript → Jest  
 - C++ → Google Test  
 
 ---
 
-### 💻 Rich CLI Experience
+### 💻 Rich CLI Interface
 
 - Syntax highlighting  
 - Structured panels  
-- Clean output  
+- Clean formatting  
 - Interactive prompts  
 
 ---
@@ -122,50 +132,3 @@ SQLite Database
     │
     ▼
 Formatted Output (CLI)
-
-## 📁 Project Structure
-
-src/
-│
-├── cli/
-│   └── main.py
-│
-├── core/
-│   └── orchestrator.py
-│
-├── tools/
-│   ├── explanation_tool.py
-│   ├── complexity_tool.py
-│   └── test_tool.py
-│
-├── services/
-│   ├── groq_services.py
-│   └── cache_services.py
-│
-├── db/
-│   ├── db.py
-│   └── init_db.py
-│
-├── utils/
-│   └── config.py
-│
-data/
-│   └── cache.db
-│
-requirements.txt
-README.md
-
-
-## ⚙️ Installation
-
-git clone https://github.com/pratikbhatta-07/code_explainer.git
-cd code_explainer
-pip install -r requirements.txt
-
-
-## ▶️ Running the Application
-
-python3 -m src.cli.main
-
-## Author -
-PRATIK BHATTA
